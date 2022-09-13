@@ -197,7 +197,9 @@ class DetailPage extends StatelessWidget {
                           fontWeight: medium, fontSize: 18),
                     ),
                     width: 170,
-                    actionButton: () {},
+                    actionButton: () {
+                      Navigator.pushNamed(context, '/select-seat');
+                    },
                     margin: EdgeInsets.only(top: 0))
               ],
             ),

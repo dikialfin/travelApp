@@ -1,6 +1,7 @@
 import 'package:airplane/UI/Pages/bonus_page.dart';
 import 'package:airplane/UI/Pages/get_started_page.dart';
 import 'package:airplane/UI/Pages/home_page.dart';
+import 'package:airplane/UI/Pages/select_seat.dart';
 import 'package:airplane/UI/Pages/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'UI/Pages/splash_page.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => SignUpPage(),
         '/bonus-page': (context) => BonusPage(),
         '/home-page': (context) => HomePage(),
+        '/select-seat': (context) => SelectSeat(),
       },
     );
   }
