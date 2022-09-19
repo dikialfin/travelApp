@@ -18,3 +18,19 @@ Untuk IOS
 - Kembali ke xcode pada folder runner double klik "Add Files To 'Runner"
 - tambahkan googleService-info.plist
 - kembali ke firebase kemudian continue to console
+
+Tambahkan package :
+
+- firebase_auth
+- firebase_core
+- cloud_firestore
+
+Untuk Android
+
+- pada firebase google create project untuk android
+- android package name ada di android/app/buildgradle _package name tidak boleh example ketika aplikasi akan di publish/ di masukan ke playstore_
+- debug signing certificate SHA-1 boleh di kosongkan
+- register app
+- download file google-services.json kemudian pindahkan ke android/app
+- edit file buildgradle yang ada pada folder /android dan android/app sesuai petunjuk firebase google
+- continue to console

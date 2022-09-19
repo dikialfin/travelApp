@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "472612281310",
+    "project_id": "bwa-airplane-54b24",
+    "storage_bucket": "bwa-airplane-54b24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472612281310:android:da4ed27899d52c0c0d1b4f",
+        "android_client_info": {
+          "package_name": "com.dikialfin.airplane"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472612281310-pdt5ktog4p18mvf163g8kjiia23hh9tg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtGemuhCSSxaAW5YUd9zKsMDjSvUK73l8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472612281310-pdt5ktog4p18mvf163g8kjiia23hh9tg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
