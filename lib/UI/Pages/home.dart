@@ -1,11 +1,15 @@
 import 'package:airplane/UI/Pages/detail_page.dart';
+import 'package:airplane/UI/Pages/settings_page.dart';
+import 'package:airplane/UI/Pages/transaction_page.dart';
+import 'package:airplane/UI/Pages/wallet_page.dart';
 import 'package:airplane/UI/Widgets/customCard.dart';
 import 'package:airplane/UI/Widgets/customTile.dart';
 import 'package:flutter/material.dart';
 import 'package:airplane/Shared/theme.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  final int currentIndex;
+  const Home({Key? key, required this.currentIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -122,8 +126,22 @@ class Home extends StatelessWidget {
       );
     }
 
-    return ListView(
-      children: [header(), popularDestination(), newDestination()],
-    );
+    // pengkondisian untuk route page nya
+    switch (currentIndex) {
+      case 0:
+        return ListView(
+          children: [header(), popularDestination(), newDestination()],
+        );
+      case 1:
+        return TransactionPage();
+      case 2:
+        return WalletPage();
+      case 3:
+        return SettingsPage();
+      default:
+        return ListView(
+          children: [header(), popularDestination(), newDestination()],
+        );
+    }
   }
 }

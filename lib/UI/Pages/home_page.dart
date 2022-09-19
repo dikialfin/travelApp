@@ -1,6 +1,8 @@
 import 'package:airplane/UI/Pages/home.dart';
 import 'package:airplane/UI/Widgets/customIconNavbar.dart';
+import 'package:airplane/cubit/page_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Shared/theme.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,7 +10,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget navbar() {
+    Widget navbar({int indexPage = 0}) {
+      final int indexPage;
       return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
@@ -21,22 +24,30 @@ class HomePage extends StatelessWidget {
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             CustomIconNavbar(
-              urlIcon: 'assets/img/icons/icon_globe.png',
-              isSelected: true,
-            ),
-            CustomIconNavbar(urlIcon: 'assets/img/icons/icon_book.png'),
-            CustomIconNavbar(urlIcon: 'assets/img/icons/icon_card.png'),
-            CustomIconNavbar(urlIcon: 'assets/img/icons/icon_settings.png'),
+                index: 0, urlIcon: 'assets/img/icons/icon_globe.png'),
+            CustomIconNavbar(
+                index: 1, urlIcon: 'assets/img/icons/icon_book.png'),
+            CustomIconNavbar(
+                index: 2, urlIcon: 'assets/img/icons/icon_card.png'),
+            CustomIconNavbar(
+                index: 3, urlIcon: 'assets/img/icons/icon_settings.png'),
           ]),
         ),
       );
     }
 
-    return Scaffold(
-      body: SafeArea(
-          child: Stack(
-        children: [Home(), navbar()],
-      )),
+    return BlocBuilder<PageCubit, int>(
+      builder: (context, currentIndex) {
+        return Scaffold(
+          body: SafeArea(
+              child: Stack(
+            children: [
+              Home(currentIndex: currentIndex),
+              navbar(indexPage: currentIndex)
+            ],
+          )),
+        );
+      },
     );
   }
 }

@@ -274,7 +274,9 @@ class SelectSeat extends StatelessWidget {
                 style:
                     whiteTextStyle.copyWith(fontWeight: medium, fontSize: 18),
               ),
-              actionButton: () {},
+              actionButton: () {
+                Navigator.pushNamed(context, '/checkout');
+              },
               margin: EdgeInsets.only(top: 30))
         ]),
       )),
