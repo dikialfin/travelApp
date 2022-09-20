@@ -34,3 +34,20 @@ Untuk Android
 - download file google-services.json kemudian pindahkan ke android/app
 - edit file buildgradle yang ada pada folder /android dan android/app sesuai petunjuk firebase google
 - continue to console
+
+Course : 46 Setting Firebase Authentication & Firestore
+
+Setting Firebase Auth
+
+- tambah kan authentication pada console firebase
+- pilih signin method nya (untuk method login menggunakan email, pada bagian Email link (passwordless signin) boleh di disable saja)
+- save
+
+Setting Firestore Database
+
+- pada console firebase pergi ke menu firestore database
+- create database (bebas mau pilih production mode atau test mode)
+- pilih lokasi cloud firestore server yang terdekat saja, kemudian simpan/next
+- ubah rules nya
+- pada bagian edit rules allow read, write nya ubah jadi true
+- selesai
