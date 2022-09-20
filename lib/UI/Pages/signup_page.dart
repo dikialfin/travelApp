@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 import '../../Shared/theme.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  SignUpPage({Key? key}) : super(key: key);
+
+  // text editing controller untuk setiap form nya
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
+  TextEditingController hobbyController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,11 @@ class SignUpPage extends StatelessWidget {
 
     Widget inputSection() {
       Widget fullName() {
-        return CustomTextFormField(hintText: 'Your name', tittle: 'Full name');
+        return CustomTextFormField(
+          hintText: 'Your name',
+          tittle: 'Full name',
+          controller: nameController,
+        );
 
         // KODE SEBELUM MEMBUAT CUSTOM WIDGET
         // return Container(
@@ -49,7 +59,10 @@ class SignUpPage extends StatelessWidget {
 
       Widget emailAddress() {
         return CustomTextFormField(
-            hintText: 'Your email address', tittle: 'Email Address');
+          hintText: 'Your email address',
+          tittle: 'Email Address',
+          controller: emailController,
+        );
 
         // KODE SEBELUM MEMBUAT CUSTOM WIDGET
         // return Container(
@@ -81,6 +94,7 @@ class SignUpPage extends StatelessWidget {
           hintText: 'Your password',
           tittle: 'Password',
           hiddenText: true,
+          controller: passwordController,
         );
 
         // KODE SEBELUM MEMBUAT CUSTOM WIDGET
@@ -110,7 +124,11 @@ class SignUpPage extends StatelessWidget {
       }
 
       Widget hobby() {
-        return CustomTextFormField(hintText: 'Your hobby', tittle: 'Hobby');
+        return CustomTextFormField(
+          hintText: 'Your hobby',
+          tittle: 'Hobby',
+          controller: hobbyController,
+        );
 
         // KODE SEBELUM MEMBUAT CUSTOM WIDGET
         // return Container(

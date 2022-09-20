@@ -5,12 +5,14 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final String tittle;
   final bool hiddenText;
+  final TextEditingController controller;
 
   const CustomTextFormField(
       {Key? key,
       required this.hintText,
       required this.tittle,
-      this.hiddenText = false})
+      this.hiddenText = false,
+      required this.controller})
       : super(key: key);
 
   @override
