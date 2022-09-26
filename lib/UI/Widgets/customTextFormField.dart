@@ -28,6 +28,7 @@ class CustomTextFormField extends StatelessWidget {
           height: 6,
         ),
         TextFormField(
+          controller: controller,
           obscureText: hiddenText,
           decoration: InputDecoration(
               hintText: hintText,

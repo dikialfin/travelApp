@@ -1,6 +1,8 @@
 import 'package:airplane/UI/Widgets/customButton.dart';
 import 'package:airplane/UI/Widgets/customTextFormField.dart';
+import 'package:airplane/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Shared/theme.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -156,15 +158,45 @@ class SignUpPage extends StatelessWidget {
       }
 
       Widget submitButton() {
-        return CustomButton(
-            textButton: Text(
-              'Get Started',
-              style: whiteTextStyle.copyWith(fontWeight: medium, fontSize: 18),
-            ),
-            actionButton: () {
-              Navigator.pushNamed(context, '/bonus-page');
-            },
-            margin: EdgeInsets.only(top: 30.0));
+        // bukus customButton nya dengan bloc consumer supaya kita bisa listen dan build
+        return BlocConsumer<AuthCubit, AuthState>(
+          listener: (context, state) {
+            // apakah auth nya sukses atau tidak
+            if (state is AuthSuccess) {
+              // arahkan ke page bonus
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/bonus-page', (route) => false);
+            } else if (state is AuthFailed) {
+              // build sebuah snackbar
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.error),
+                backgroundColor: redColor,
+              ));
+            }
+          },
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            return CustomButton(
+                textButton: Text(
+                  'Get Started',
+                  style:
+                      whiteTextStyle.copyWith(fontWeight: medium, fontSize: 18),
+                ),
+                actionButton: () {
+                  context.read<AuthCubit>().signUp(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      name: nameController.text,
+                      hobby: hobbyController.text);
+                },
+                margin: EdgeInsets.only(top: 30.0));
+          },
+        );
       }
 
       // KODE SEBELUM MEMBUAT CUSTOM WIDGET
