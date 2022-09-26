@@ -4,8 +4,10 @@ import 'package:airplane/UI/Pages/transaction_page.dart';
 import 'package:airplane/UI/Pages/wallet_page.dart';
 import 'package:airplane/UI/Widgets/customCard.dart';
 import 'package:airplane/UI/Widgets/customTile.dart';
+import 'package:airplane/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:airplane/Shared/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Home extends StatelessWidget {
   final int currentIndex;
@@ -14,35 +16,44 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget header() {
-      return Container(
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: defaultMargin),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      return BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          if (state is AuthSuccess) {
+            return Container(
+              padding:
+                  EdgeInsets.symmetric(vertical: 30, horizontal: defaultMargin),
+              child: Row(
                 children: [
-                  Text('Howdy,\nKezia Anne',
-                      style: blackTextStyle.copyWith(
-                          fontWeight: semiBold, fontSize: 24)),
-                  Text(
-                    'Where to fly today?',
-                    style:
-                        greyTextStyle.copyWith(fontWeight: light, fontSize: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Howdy,\n${state.user.name}',
+                            style: blackTextStyle.copyWith(
+                                fontWeight: semiBold, fontSize: 24)),
+                        Text(
+                          'Where to fly today?',
+                          style: greyTextStyle.copyWith(
+                              fontWeight: light, fontSize: 16),
+                        ),
+                      ],
+                    ),
                   ),
+                  Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/img/img_profile.png')),
+                        shape: BoxShape.circle),
+                  )
                 ],
               ),
-            ),
-            Container(
-              height: 60,
-              width: 60,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/img/img_profile.png')),
-                  shape: BoxShape.circle),
-            )
-          ],
-        ),
+            );
+          } else {
+            return SizedBox();
+          }
+        },
       );
     }
 
