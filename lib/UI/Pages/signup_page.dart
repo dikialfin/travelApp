@@ -243,9 +243,11 @@ class SignUpPage extends StatelessWidget {
       return Container(
         margin: EdgeInsets.only(top: 50),
         child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/signin');
+            },
             child: Text(
-              'Terms And Condition',
+              'Already have account? Sigin In Now',
               style: greyTextStyle.copyWith(
                   fontWeight: light,
                   fontSize: 16,

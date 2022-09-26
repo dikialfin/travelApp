@@ -15,7 +15,7 @@ class SettingsPage extends StatelessWidget {
           listener: (context, state) {
             if (state is AuthInitial) {
               Navigator.pushNamedAndRemoveUntil(
-                  context, '/get-started', (route) => false);
+                  context, '/signin', (route) => false);
             } else if (state is AuthFailed) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(state.error),

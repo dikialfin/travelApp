@@ -3,6 +3,7 @@ import 'package:airplane/UI/Pages/chekcout_page.dart';
 import 'package:airplane/UI/Pages/get_started_page.dart';
 import 'package:airplane/UI/Pages/home_page.dart';
 import 'package:airplane/UI/Pages/select_seat.dart';
+import 'package:airplane/UI/Pages/signin_page.dart';
 import 'package:airplane/UI/Pages/signup_page.dart';
 import 'package:airplane/UI/Pages/successBooking_page.dart';
 import 'package:airplane/cubit/auth_cubit.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => SplashPage(),
           '/get-started': (context) => GetStartedPage(),
           '/signup': (context) => SignUpPage(),
+          '/signin': (context) => SignInPage(),
           '/bonus-page': (context) => BonusPage(),
           '/home-page': (context) => HomePage(),
           '/select-seat': (context) => SelectSeat(),

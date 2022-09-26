@@ -32,6 +32,18 @@ class AuthService {
     }
   }
 
+  Future<UserModel> siginIn(String email, String password) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      UserModel userData =
+          await UserService().getUserById(userCredential.user!.uid);
+      return userData;
+    } catch (e) {
+      throw e;
+    }
+  }
+
   Future<void> signOut() async {
     try {
       await _auth.signOut();
