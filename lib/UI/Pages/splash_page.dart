@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:airplane/UI/Pages/get_started_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../Shared/theme.dart';
 
@@ -22,7 +23,22 @@ class _SplashPageState extends State<SplashPage> {
       //     context, MaterialPageRoute(builder: (context) => GetStartedPage()));
 
       // CARA KE 2
-      Navigator.pushNamed(context, '/get-started');
+      // Navigator.pushNamed(context, '/get-started');
+
+      // Course : 41 Splash Screen
+      /* 
+      pada course ini membahas ketika kita berhasil register dan masuk ke halaman hompage
+      ktika aplikasi di restart dia akan kembali ke halaman get started harus nya tetap berada di hompage
+      */
+      // kita beri pengkondisian jika firebase auth nya memiliki user yang aktif
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/get-started', (route) => false);
+      } else {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/home-page', (route) => false);
+      }
     });
     super.initState();
   }
