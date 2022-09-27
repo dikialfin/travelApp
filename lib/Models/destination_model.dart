@@ -24,7 +24,7 @@ class DestinationModel extends Equatable {
           imageUrl: json['imageUrl'],
           name: json['name'],
           price: json['price'],
-          rating: json['rating']);
+          rating: (json['rating']).toDouble());
 
   @override
   // TODO: implement props

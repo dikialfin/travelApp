@@ -1,19 +1,13 @@
+import 'package:airplane/Models/destination_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:airplane/Shared/theme.dart';
 
 class CustomCard extends StatelessWidget {
-  final double rating;
-  final String urlImage, tittle, city;
+  final DestinationModel destinations;
   final Function() action;
 
-  const CustomCard(
-      {Key? key,
-      required this.urlImage,
-      required this.tittle,
-      required this.city,
-      required this.action,
-      this.rating = 0.0})
+  const CustomCard({Key? key, required this.destinations, required this.action})
       : super(key: key);
 
   @override
@@ -33,7 +27,8 @@ class CustomCard extends StatelessWidget {
               height: 220,
               width: 180,
               decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage(urlImage)),
+                  image: DecorationImage(
+                      image: NetworkImage(destinations.imageUrl)),
                   borderRadius: BorderRadius.circular(defaultRadius)),
               child: Align(
                 alignment: Alignment.topRight,
@@ -48,7 +43,7 @@ class CustomCard extends StatelessWidget {
                           height: 24,
                           width: 24,
                         ),
-                        Text(rating.toString())
+                        Text(destinations.rating.toString())
                       ]),
                   decoration: BoxDecoration(
                       color: whiteColor,
@@ -60,7 +55,7 @@ class CustomCard extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(left: 10, top: 20),
               child: Text(
-                tittle,
+                destinations.name,
                 style:
                     blackTextStyle.copyWith(fontWeight: medium, fontSize: 18),
               ),
@@ -68,7 +63,7 @@ class CustomCard extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(left: 10, top: 5),
               child: Text(
-                city,
+                destinations.city,
                 style: greyTextStyle.copyWith(fontWeight: light, fontSize: 14),
               ),
             ),
