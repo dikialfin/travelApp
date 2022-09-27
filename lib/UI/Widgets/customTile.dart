@@ -21,7 +21,7 @@ class CustomTile extends StatelessWidget {
         height: 70,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(defaultRadius),
-            image: DecorationImage(image: AssetImage(urlImg))),
+            image: DecorationImage(image: NetworkImage(urlImg))),
       );
     }
 

@@ -81,15 +81,18 @@ class _HomeState extends State<Home> {
             return CustomCard(
                 destinations: destination,
                 action: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DetailPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              DetailPage(destination: destination)));
                 });
           }).toList(),
         ),
       );
     }
 
-    Widget newDestination() {
+    Widget newDestination(List<DestinationModel> destinations) {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: defaultMargin),
         margin: EdgeInsets.only(top: 30, bottom: 120),
@@ -98,30 +101,25 @@ class _HomeState extends State<Home> {
             'New This Year',
             style: blackTextStyle.copyWith(fontWeight: semiBold, fontSize: 18),
           ),
-          CustomTile(
-            urlImg: 'assets/img/contents/destination6.png',
-            tittleTile: 'Danau Beratan',
-            cityTile: 'Singajara',
-            rating: 4.5,
-          ),
-          CustomTile(
-            urlImg: 'assets/img/contents/destination7.png',
-            tittleTile: 'Sydney Opera',
-            cityTile: 'Australia',
-            rating: 4.7,
-          ),
-          CustomTile(
-            urlImg: 'assets/img/contents/destination8.png',
-            tittleTile: 'Roma',
-            cityTile: 'Italy',
-            rating: 4.8,
-          ),
-          CustomTile(
-            urlImg: 'assets/img/contents/destination9.png',
-            tittleTile: 'Payung Teduh',
-            cityTile: 'Singapore',
-            rating: 4.5,
-          ),
+          Column(
+            children: destinations.map((destination) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              DetailPage(destination: destination)));
+                },
+                child: CustomTile(
+                  urlImg: destination.imageUrl,
+                  tittleTile: destination.name,
+                  cityTile: destination.city,
+                  rating: destination.rating,
+                ),
+              );
+            }).toList(),
+          )
         ]),
       );
     }
@@ -167,7 +165,7 @@ class _HomeState extends State<Home> {
                 children: [
                   header(),
                   popularDestination(state.destination),
-                  newDestination()
+                  newDestination(state.destination)
                 ],
               );
             }
