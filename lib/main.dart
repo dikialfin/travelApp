@@ -7,6 +7,7 @@ import 'package:airplane/UI/Pages/signin_page.dart';
 import 'package:airplane/UI/Pages/signup_page.dart';
 import 'package:airplane/UI/Pages/successBooking_page.dart';
 import 'package:airplane/cubit/auth_cubit.dart';
+import 'package:airplane/cubit/destination_cubit.dart';
 import 'package:airplane/cubit/page_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => PageCubit()),
-        BlocProvider(create: (context) => AuthCubit())
+        BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => DestinationCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
