@@ -51,3 +51,18 @@ Setting Firestore Database
 - ubah rules nya
 - pada bagian edit rules allow read, write nya ubah jadi true
 - selesai
+
+Course 56 : Menambahkan Data Ke Database Firebase, Dan Upload Image Assets Nya
+Upload Image Assets Ke Firestore
+
+- Pergi ke console firestore nya
+- masuk ke menu storage pada menu Build/Storage
+- create new folder
+- pilih folder yang tadi kita buat
+- pilih upload file
+  Menambahkan Data ke Database Firebase
+- bikin colection baru
+- document id nya kita auto generate aja
+- buat field sesuai kebutuhan
+- pada kasus ini field imageUrl kita isikan url dari image asset yang sudah kita upload ke storage firestore tadi
+- jika sudah, save
