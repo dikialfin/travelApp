@@ -1,12 +1,15 @@
+import 'package:airplane/cubit/seat_cubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:airplane/Shared/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomBoxSelectSeat extends StatelessWidget {
   final int statusCode;
   final String text;
+  final String idSeat;
 
   const CustomBoxSelectSeat(
-      {Key? key, required this.statusCode, this.text = ''})
+      {Key? key, required this.statusCode, this.text = '', this.idSeat = ''})
       : super(key: key);
 
   @override
@@ -38,19 +41,24 @@ class CustomBoxSelectSeat extends StatelessWidget {
       stringStyle = greyTextStyle.copyWith(fontWeight: regular, fontSize: 16);
     }
 
-    return Container(
-        margin: EdgeInsets.only(right: 10, top: 10),
-        height: 48,
-        width: 48,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: containerColor,
-            border: Border.all(color: borderColor)),
-        child: Center(
-          child: Text(
-            text,
-            style: stringStyle,
-          ),
-        ));
+    return GestureDetector(
+      onTap: () {
+        context.read<SeatCubitCubit>().selectSeat(idSeat);
+      },
+      child: Container(
+          margin: EdgeInsets.only(right: 10, top: 10),
+          height: 48,
+          width: 48,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: containerColor,
+              border: Border.all(color: borderColor)),
+          child: Center(
+            child: Text(
+              text,
+              style: stringStyle,
+            ),
+          )),
+    );
   }
 }

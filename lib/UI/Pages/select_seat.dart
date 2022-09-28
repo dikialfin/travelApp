@@ -117,10 +117,12 @@ class SelectSeat extends StatelessWidget {
                   CustomBoxSelectSeat(
                     statusCode: 2,
                     text: '',
+                    idSeat: 'A1',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 2,
                     text: '',
+                    idSeat: 'B1',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 3,
@@ -129,10 +131,12 @@ class SelectSeat extends StatelessWidget {
                   CustomBoxSelectSeat(
                     statusCode: 0,
                     text: '',
+                    idSeat: 'C1',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 2,
                     text: '',
+                    idSeat: 'D1',
                   ),
                 ],
               ),
@@ -141,10 +145,12 @@ class SelectSeat extends StatelessWidget {
                   CustomBoxSelectSeat(
                     statusCode: 0,
                     text: '',
+                    idSeat: 'A2',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 0,
                     text: '',
+                    idSeat: 'B2',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 3,
@@ -153,10 +159,12 @@ class SelectSeat extends StatelessWidget {
                   CustomBoxSelectSeat(
                     statusCode: 0,
                     text: '',
+                    idSeat: 'C2',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 2,
                     text: '',
+                    idSeat: 'D2',
                   ),
                 ],
               ),
@@ -165,10 +173,12 @@ class SelectSeat extends StatelessWidget {
                   CustomBoxSelectSeat(
                     statusCode: 1,
                     text: 'YOU',
+                    idSeat: 'A3',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 1,
                     text: 'YOU',
+                    idSeat: 'B3',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 3,
@@ -177,6 +187,7 @@ class SelectSeat extends StatelessWidget {
                   CustomBoxSelectSeat(
                     statusCode: 0,
                     text: '',
+                    idSeat: 'C3',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 0,
@@ -189,10 +200,12 @@ class SelectSeat extends StatelessWidget {
                   CustomBoxSelectSeat(
                     statusCode: 0,
                     text: '',
+                    idSeat: 'A4',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 2,
                     text: '',
+                    idSeat: 'B4',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 3,
@@ -201,10 +214,12 @@ class SelectSeat extends StatelessWidget {
                   CustomBoxSelectSeat(
                     statusCode: 0,
                     text: '',
+                    idSeat: 'C4',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 0,
                     text: '',
+                    idSeat: 'D4',
                   ),
                 ],
               ),
@@ -213,10 +228,12 @@ class SelectSeat extends StatelessWidget {
                   CustomBoxSelectSeat(
                     statusCode: 0,
                     text: '',
+                    idSeat: 'A5',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 0,
                     text: '',
+                    idSeat: 'B5',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 3,
@@ -225,10 +242,12 @@ class SelectSeat extends StatelessWidget {
                   CustomBoxSelectSeat(
                     statusCode: 2,
                     text: '',
+                    idSeat: 'C5',
                   ),
                   CustomBoxSelectSeat(
                     statusCode: 0,
                     text: '',
+                    idSeat: 'D5',
                   ),
                 ],
               ),
