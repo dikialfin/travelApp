@@ -89,165 +89,176 @@ class SelectSeat extends StatelessWidget {
               // Seat Initial
               Row(
                 children: [
-                  CustomBoxSelectSeat(
-                    statusCode: 3,
-                    text: 'A',
-                  ),
-                  CustomBoxSelectSeat(
-                    statusCode: 3,
-                    text: 'B',
-                  ),
-                  CustomBoxSelectSeat(
-                    statusCode: 3,
-                    text: '',
-                  ),
-                  CustomBoxSelectSeat(
-                    statusCode: 3,
-                    text: 'C',
-                  ),
-                  CustomBoxSelectSeat(
-                    statusCode: 3,
-                    text: 'D',
-                  ),
+                  Container(
+                      margin: EdgeInsets.only(right: 10, top: 10),
+                      height: 48,
+                      width: 48,
+                      child: Center(
+                        child: Text('A'),
+                      )),
+                  Container(
+                      margin: EdgeInsets.only(right: 10, top: 10),
+                      height: 48,
+                      width: 48,
+                      child: Center(
+                        child: Text('B'),
+                      )),
+                  Container(
+                      margin: EdgeInsets.only(right: 10, top: 10),
+                      height: 48,
+                      width: 48,
+                      child: Center(
+                        child: Text(''),
+                      )),
+                  Container(
+                      margin: EdgeInsets.only(right: 10, top: 10),
+                      height: 48,
+                      width: 48,
+                      child: Center(
+                        child: Text('C'),
+                      )),
+                  Container(
+                      margin: EdgeInsets.only(right: 10, top: 10),
+                      height: 48,
+                      width: 48,
+                      child: Center(
+                        child: Text('D'),
+                      )),
                 ],
               ),
               // Seat Number Postion
               Row(
                 children: [
                   CustomBoxSelectSeat(
-                    statusCode: 2,
-                    text: '',
                     idSeat: 'A1',
+                    isAvailable: true,
                   ),
                   CustomBoxSelectSeat(
-                    statusCode: 2,
-                    text: '',
                     idSeat: 'B1',
+                    isAvailable: false,
                   ),
+                  Container(
+                      margin: EdgeInsets.only(right: 10, top: 10),
+                      height: 48,
+                      width: 48,
+                      child: Center(
+                        child: Text('1'),
+                      )),
                   CustomBoxSelectSeat(
-                    statusCode: 3,
-                    text: '1',
-                  ),
-                  CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
                     idSeat: 'C1',
+                    isAvailable: false,
                   ),
                   CustomBoxSelectSeat(
-                    statusCode: 2,
-                    text: '',
                     idSeat: 'D1',
+                    isAvailable: false,
                   ),
                 ],
               ),
               Row(
                 children: [
                   CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
                     idSeat: 'A2',
+                    isAvailable: false,
                   ),
                   CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
                     idSeat: 'B2',
+                    isAvailable: true,
                   ),
+                  Container(
+                      margin: EdgeInsets.only(right: 10, top: 10),
+                      height: 48,
+                      width: 48,
+                      child: Center(
+                        child: Text('2'),
+                      )),
                   CustomBoxSelectSeat(
-                    statusCode: 3,
-                    text: '2',
-                  ),
-                  CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
                     idSeat: 'C2',
+                    isAvailable: false,
                   ),
                   CustomBoxSelectSeat(
-                    statusCode: 2,
-                    text: '',
                     idSeat: 'D2',
+                    isAvailable: false,
                   ),
                 ],
               ),
               Row(
                 children: [
                   CustomBoxSelectSeat(
-                    statusCode: 1,
-                    text: 'YOU',
                     idSeat: 'A3',
+                    isAvailable: false,
                   ),
                   CustomBoxSelectSeat(
-                    statusCode: 1,
-                    text: 'YOU',
                     idSeat: 'B3',
+                    isAvailable: false,
                   ),
+                  Container(
+                      margin: EdgeInsets.only(right: 10, top: 10),
+                      height: 48,
+                      width: 48,
+                      child: Center(
+                        child: Text('3'),
+                      )),
                   CustomBoxSelectSeat(
-                    statusCode: 3,
-                    text: '3',
-                  ),
-                  CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
                     idSeat: 'C3',
+                    isAvailable: true,
                   ),
                   CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
+                    idSeat: 'D3',
+                    isAvailable: false,
                   ),
                 ],
               ),
               Row(
                 children: [
                   CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
                     idSeat: 'A4',
+                    isAvailable: false,
                   ),
                   CustomBoxSelectSeat(
-                    statusCode: 2,
-                    text: '',
                     idSeat: 'B4',
+                    isAvailable: false,
                   ),
+                  Container(
+                      margin: EdgeInsets.only(right: 10, top: 10),
+                      height: 48,
+                      width: 48,
+                      child: Center(
+                        child: Text('4'),
+                      )),
                   CustomBoxSelectSeat(
-                    statusCode: 3,
-                    text: '4',
-                  ),
-                  CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
                     idSeat: 'C4',
+                    isAvailable: false,
                   ),
                   CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
                     idSeat: 'D4',
+                    isAvailable: true,
                   ),
                 ],
               ),
               Row(
                 children: [
                   CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
                     idSeat: 'A5',
+                    isAvailable: false,
                   ),
                   CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
                     idSeat: 'B5',
+                    isAvailable: false,
                   ),
+                  Container(
+                      margin: EdgeInsets.only(right: 10, top: 10),
+                      height: 48,
+                      width: 48,
+                      child: Center(
+                        child: Text('5'),
+                      )),
                   CustomBoxSelectSeat(
-                    statusCode: 3,
-                    text: '5',
-                  ),
-                  CustomBoxSelectSeat(
-                    statusCode: 2,
-                    text: '',
                     idSeat: 'C5',
+                    isAvailable: true,
                   ),
                   CustomBoxSelectSeat(
-                    statusCode: 0,
-                    text: '',
                     idSeat: 'D5',
+                    isAvailable: false,
                   ),
                 ],
               ),

@@ -4,46 +4,55 @@ import 'package:airplane/Shared/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomBoxSelectSeat extends StatelessWidget {
-  final int statusCode;
-  final String text;
   final String idSeat;
+  final bool isAvailable;
 
   const CustomBoxSelectSeat(
-      {Key? key, required this.statusCode, this.text = '', this.idSeat = ''})
+      {Key? key, required this.idSeat, this.isAvailable = true})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Color containerColor = colorTransparent;
-    Color borderColor = colorTransparent;
+    bool isSelected = context.watch<SeatCubitCubit>().isSelected(idSeat);
 
-    switch (this.statusCode) {
-      case 0:
-        containerColor = availableColor;
-        borderColor = primaryColor;
-        break;
-      case 1:
-        containerColor = primaryColor;
-        borderColor = primaryColor;
-        break;
-      case 2:
-        containerColor = unavailableColor;
-        break;
-      case 3:
-        containerColor = whiteColor;
-        break;
-      default:
-        containerColor = unavailableColor;
+    backgroundColor() {
+      if (isAvailable) {
+        if (isSelected) {
+          return primaryColor;
+        } else {
+          return availableColor;
+        }
+      } else {
+        return unavailableColor;
+      }
     }
 
-    TextStyle stringStyle = whiteTextStyle.copyWith(fontWeight: semiBold);
-    if (statusCode == 3) {
-      stringStyle = greyTextStyle.copyWith(fontWeight: regular, fontSize: 16);
+    borderColor() {
+      if (!isAvailable) {
+        return unavailableColor;
+      } else {
+        return primaryColor;
+      }
+    }
+
+    child() {
+      if (isSelected) {
+        return Center(
+          child: Text(
+            'YOU',
+            style: whiteTextStyle.copyWith(fontWeight: semiBold),
+          ),
+        );
+      } else {
+        return SizedBox();
+      }
     }
 
     return GestureDetector(
       onTap: () {
-        context.read<SeatCubitCubit>().selectSeat(idSeat);
+        if (isAvailable) {
+          context.read<SeatCubitCubit>().selectSeat(idSeat);
+        }
       },
       child: Container(
           margin: EdgeInsets.only(right: 10, top: 10),
@@ -51,14 +60,9 @@ class CustomBoxSelectSeat extends StatelessWidget {
           width: 48,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: containerColor,
-              border: Border.all(color: borderColor)),
-          child: Center(
-            child: Text(
-              text,
-              style: stringStyle,
-            ),
-          )),
+              color: backgroundColor(),
+              border: Border.all(color: borderColor())),
+          child: child()),
     );
   }
 }
