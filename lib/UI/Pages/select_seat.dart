@@ -1,10 +1,15 @@
+import 'package:airplane/Models/destination_model.dart';
 import 'package:airplane/UI/Widgets/customBoxSelectSeat.dart';
 import 'package:airplane/UI/Widgets/customButton.dart';
+import 'package:airplane/cubit/seat_cubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:airplane/Shared/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class SelectSeat extends StatelessWidget {
-  const SelectSeat({Key? key}) : super(key: key);
+  final DestinationModel destination;
+  const SelectSeat({Key? key, required this.destination}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,226 +82,232 @@ class SelectSeat extends StatelessWidget {
             ],
           ),
           // Card Select Seat
-          Container(
-            margin: EdgeInsets.only(top: 30),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: whiteColor,
-              borderRadius: BorderRadius.circular(defaultRadius),
-            ),
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 24),
-            child: Column(children: [
-              // Seat Initial
-              Row(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(right: 10, top: 10),
-                      height: 48,
-                      width: 48,
-                      child: Center(
-                        child: Text('A'),
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(right: 10, top: 10),
-                      height: 48,
-                      width: 48,
-                      child: Center(
-                        child: Text('B'),
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(right: 10, top: 10),
-                      height: 48,
-                      width: 48,
-                      child: Center(
-                        child: Text(''),
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(right: 10, top: 10),
-                      height: 48,
-                      width: 48,
-                      child: Center(
-                        child: Text('C'),
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(right: 10, top: 10),
-                      height: 48,
-                      width: 48,
-                      child: Center(
-                        child: Text('D'),
-                      )),
-                ],
+          BlocBuilder<SeatCubitCubit, List<String>>(builder: (context, state) {
+            return Container(
+              margin: EdgeInsets.only(top: 30),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: whiteColor,
+                borderRadius: BorderRadius.circular(defaultRadius),
               ),
-              // Seat Number Postion
-              Row(
-                children: [
-                  CustomBoxSelectSeat(
-                    idSeat: 'A1',
-                    isAvailable: true,
-                  ),
-                  CustomBoxSelectSeat(
-                    idSeat: 'B1',
-                    isAvailable: false,
-                  ),
-                  Container(
-                      margin: EdgeInsets.only(right: 10, top: 10),
-                      height: 48,
-                      width: 48,
-                      child: Center(
-                        child: Text('1'),
-                      )),
-                  CustomBoxSelectSeat(
-                    idSeat: 'C1',
-                    isAvailable: false,
-                  ),
-                  CustomBoxSelectSeat(
-                    idSeat: 'D1',
-                    isAvailable: false,
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  CustomBoxSelectSeat(
-                    idSeat: 'A2',
-                    isAvailable: false,
-                  ),
-                  CustomBoxSelectSeat(
-                    idSeat: 'B2',
-                    isAvailable: true,
-                  ),
-                  Container(
-                      margin: EdgeInsets.only(right: 10, top: 10),
-                      height: 48,
-                      width: 48,
-                      child: Center(
-                        child: Text('2'),
-                      )),
-                  CustomBoxSelectSeat(
-                    idSeat: 'C2',
-                    isAvailable: false,
-                  ),
-                  CustomBoxSelectSeat(
-                    idSeat: 'D2',
-                    isAvailable: false,
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  CustomBoxSelectSeat(
-                    idSeat: 'A3',
-                    isAvailable: false,
-                  ),
-                  CustomBoxSelectSeat(
-                    idSeat: 'B3',
-                    isAvailable: false,
-                  ),
-                  Container(
-                      margin: EdgeInsets.only(right: 10, top: 10),
-                      height: 48,
-                      width: 48,
-                      child: Center(
-                        child: Text('3'),
-                      )),
-                  CustomBoxSelectSeat(
-                    idSeat: 'C3',
-                    isAvailable: true,
-                  ),
-                  CustomBoxSelectSeat(
-                    idSeat: 'D3',
-                    isAvailable: false,
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  CustomBoxSelectSeat(
-                    idSeat: 'A4',
-                    isAvailable: false,
-                  ),
-                  CustomBoxSelectSeat(
-                    idSeat: 'B4',
-                    isAvailable: false,
-                  ),
-                  Container(
-                      margin: EdgeInsets.only(right: 10, top: 10),
-                      height: 48,
-                      width: 48,
-                      child: Center(
-                        child: Text('4'),
-                      )),
-                  CustomBoxSelectSeat(
-                    idSeat: 'C4',
-                    isAvailable: false,
-                  ),
-                  CustomBoxSelectSeat(
-                    idSeat: 'D4',
-                    isAvailable: true,
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  CustomBoxSelectSeat(
-                    idSeat: 'A5',
-                    isAvailable: false,
-                  ),
-                  CustomBoxSelectSeat(
-                    idSeat: 'B5',
-                    isAvailable: false,
-                  ),
-                  Container(
-                      margin: EdgeInsets.only(right: 10, top: 10),
-                      height: 48,
-                      width: 48,
-                      child: Center(
-                        child: Text('5'),
-                      )),
-                  CustomBoxSelectSeat(
-                    idSeat: 'C5',
-                    isAvailable: true,
-                  ),
-                  CustomBoxSelectSeat(
-                    idSeat: 'D5',
-                    isAvailable: false,
-                  ),
-                ],
-              ),
-              // Total Price Section
-              Container(
-                margin: EdgeInsets.only(top: 30),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Your Seat',
-                        style: greyTextStyle.copyWith(fontWeight: light),
-                      ),
-                      Text(
-                        'A3, B3',
-                        style: blackTextStyle.copyWith(
-                            fontWeight: medium, fontSize: 16),
-                      ),
-                    ]),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 15),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Total',
-                        style: greyTextStyle.copyWith(fontWeight: light),
-                      ),
-                      Text(
-                        'IDR 540.000.000',
-                        style: purpleTextStyle.copyWith(
-                            fontWeight: semiBold, fontSize: 16),
-                      ),
-                    ]),
-              )
-            ]),
-          ),
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 24),
+              child: Column(children: [
+                // Seat Initial
+                Row(
+                  children: [
+                    Container(
+                        margin: EdgeInsets.only(right: 10, top: 10),
+                        height: 48,
+                        width: 48,
+                        child: Center(
+                          child: Text('A'),
+                        )),
+                    Container(
+                        margin: EdgeInsets.only(right: 10, top: 10),
+                        height: 48,
+                        width: 48,
+                        child: Center(
+                          child: Text('B'),
+                        )),
+                    Container(
+                        margin: EdgeInsets.only(right: 10, top: 10),
+                        height: 48,
+                        width: 48,
+                        child: Center(
+                          child: Text(''),
+                        )),
+                    Container(
+                        margin: EdgeInsets.only(right: 10, top: 10),
+                        height: 48,
+                        width: 48,
+                        child: Center(
+                          child: Text('C'),
+                        )),
+                    Container(
+                        margin: EdgeInsets.only(right: 10, top: 10),
+                        height: 48,
+                        width: 48,
+                        child: Center(
+                          child: Text('D'),
+                        )),
+                  ],
+                ),
+                // Seat Number Postion
+                Row(
+                  children: [
+                    CustomBoxSelectSeat(
+                      idSeat: 'A1',
+                      isAvailable: true,
+                    ),
+                    CustomBoxSelectSeat(
+                      idSeat: 'B1',
+                      isAvailable: false,
+                    ),
+                    Container(
+                        margin: EdgeInsets.only(right: 10, top: 10),
+                        height: 48,
+                        width: 48,
+                        child: Center(
+                          child: Text('1'),
+                        )),
+                    CustomBoxSelectSeat(
+                      idSeat: 'C1',
+                      isAvailable: false,
+                    ),
+                    CustomBoxSelectSeat(
+                      idSeat: 'D1',
+                      isAvailable: false,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    CustomBoxSelectSeat(
+                      idSeat: 'A2',
+                      isAvailable: false,
+                    ),
+                    CustomBoxSelectSeat(
+                      idSeat: 'B2',
+                      isAvailable: true,
+                    ),
+                    Container(
+                        margin: EdgeInsets.only(right: 10, top: 10),
+                        height: 48,
+                        width: 48,
+                        child: Center(
+                          child: Text('2'),
+                        )),
+                    CustomBoxSelectSeat(
+                      idSeat: 'C2',
+                      isAvailable: false,
+                    ),
+                    CustomBoxSelectSeat(
+                      idSeat: 'D2',
+                      isAvailable: false,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    CustomBoxSelectSeat(
+                      idSeat: 'A3',
+                      isAvailable: false,
+                    ),
+                    CustomBoxSelectSeat(
+                      idSeat: 'B3',
+                      isAvailable: false,
+                    ),
+                    Container(
+                        margin: EdgeInsets.only(right: 10, top: 10),
+                        height: 48,
+                        width: 48,
+                        child: Center(
+                          child: Text('3'),
+                        )),
+                    CustomBoxSelectSeat(
+                      idSeat: 'C3',
+                      isAvailable: true,
+                    ),
+                    CustomBoxSelectSeat(
+                      idSeat: 'D3',
+                      isAvailable: false,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    CustomBoxSelectSeat(
+                      idSeat: 'A4',
+                      isAvailable: false,
+                    ),
+                    CustomBoxSelectSeat(
+                      idSeat: 'B4',
+                      isAvailable: false,
+                    ),
+                    Container(
+                        margin: EdgeInsets.only(right: 10, top: 10),
+                        height: 48,
+                        width: 48,
+                        child: Center(
+                          child: Text('4'),
+                        )),
+                    CustomBoxSelectSeat(
+                      idSeat: 'C4',
+                      isAvailable: false,
+                    ),
+                    CustomBoxSelectSeat(
+                      idSeat: 'D4',
+                      isAvailable: true,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    CustomBoxSelectSeat(
+                      idSeat: 'A5',
+                      isAvailable: false,
+                    ),
+                    CustomBoxSelectSeat(
+                      idSeat: 'B5',
+                      isAvailable: false,
+                    ),
+                    Container(
+                        margin: EdgeInsets.only(right: 10, top: 10),
+                        height: 48,
+                        width: 48,
+                        child: Center(
+                          child: Text('5'),
+                        )),
+                    CustomBoxSelectSeat(
+                      idSeat: 'C5',
+                      isAvailable: true,
+                    ),
+                    CustomBoxSelectSeat(
+                      idSeat: 'D5',
+                      isAvailable: false,
+                    ),
+                  ],
+                ),
+                // Total Price Section
+                Container(
+                  margin: EdgeInsets.only(top: 30),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Your Seat',
+                          style: greyTextStyle.copyWith(fontWeight: light),
+                        ),
+                        Text(
+                          state.join(', '),
+                          style: blackTextStyle.copyWith(
+                              fontWeight: medium, fontSize: 16),
+                        ),
+                      ]),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 15),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Total',
+                          style: greyTextStyle.copyWith(fontWeight: light),
+                        ),
+                        Text(
+                          NumberFormat.currency(
+                                  decimalDigits: 0,
+                                  locale: 'ID',
+                                  symbol: 'IDR ')
+                              .format(state.length * destination.price),
+                          style: purpleTextStyle.copyWith(
+                              fontWeight: semiBold, fontSize: 16),
+                        ),
+                      ]),
+                )
+              ]),
+            );
+          }),
           // Button Continue Section
           CustomButton(
               textButton: Text(

@@ -1,4 +1,5 @@
 import 'package:airplane/Models/destination_model.dart';
+import 'package:airplane/UI/Pages/select_seat.dart';
 import 'package:airplane/UI/Widgets/customButton.dart';
 import 'package:airplane/UI/Widgets/customImagePreview.dart';
 import 'package:airplane/UI/Widgets/customInterest.dart';
@@ -202,7 +203,11 @@ class DetailPage extends StatelessWidget {
                     ),
                     width: 170,
                     actionButton: () {
-                      Navigator.pushNamed(context, '/select-seat');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  SelectSeat(destination: destination)));
                     },
                     margin: EdgeInsets.only(top: 0))
               ],
