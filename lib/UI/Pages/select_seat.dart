@@ -1,4 +1,6 @@
 import 'package:airplane/Models/destination_model.dart';
+import 'package:airplane/Models/transaction_model.dart';
+import 'package:airplane/UI/Pages/chekcout_page.dart';
 import 'package:airplane/UI/Widgets/customBoxSelectSeat.dart';
 import 'package:airplane/UI/Widgets/customButton.dart';
 import 'package:airplane/cubit/seat_cubit_cubit.dart';
@@ -309,16 +311,32 @@ class SelectSeat extends StatelessWidget {
             );
           }),
           // Button Continue Section
-          CustomButton(
-              textButton: Text(
-                'Continue to Checkout',
-                style:
-                    whiteTextStyle.copyWith(fontWeight: medium, fontSize: 18),
-              ),
-              actionButton: () {
-                Navigator.pushNamed(context, '/checkout');
-              },
-              margin: EdgeInsets.only(top: 30))
+          BlocBuilder<SeatCubitCubit, List<String>>(builder: (context, state) {
+            return CustomButton(
+                textButton: Text(
+                  'Continue to Checkout',
+                  style:
+                      whiteTextStyle.copyWith(fontWeight: medium, fontSize: 18),
+                ),
+                actionButton: () {
+                  int price = destination.price * state.length;
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CheckoutPage(
+                              transaction: TransactionModel(
+                                  destination: destination,
+                                  totalTraveler: state.length,
+                                  selectedSeat: state.join(', '),
+                                  insurance: true,
+                                  refundable: false,
+                                  price: price,
+                                  grandTotal:
+                                      price + (price * 0.45).toInt()))));
+                },
+                margin: EdgeInsets.only(top: 30));
+          })
         ]),
       )),
     );
