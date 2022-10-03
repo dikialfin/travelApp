@@ -1,7 +1,10 @@
 import 'package:airplane/Models/transaction_model.dart';
 import 'package:airplane/UI/Widgets/customButton.dart';
+import 'package:airplane/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:airplane/Shared/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class CheckoutPage extends StatelessWidget {
   final TransactionModel transaction;
@@ -20,7 +23,7 @@ class CheckoutPage extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(defaultRadius),
                   image: DecorationImage(
-                      image: AssetImage('assets/img/contents/destination1.png'),
+                      image: NetworkImage(transaction.destination.imageUrl),
                       fit: BoxFit.cover)),
             ),
             Container(
@@ -28,12 +31,12 @@ class CheckoutPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Lake Ciliwung',
+                    transaction.destination.name,
                     style: blackTextStyle.copyWith(
                         fontWeight: medium, fontSize: 18),
                   ),
                   Text(
-                    'Tangerang',
+                    transaction.destination.city,
                     style:
                         greyTextStyle.copyWith(fontWeight: light, fontSize: 14),
                   )
@@ -53,7 +56,7 @@ class CheckoutPage extends StatelessWidget {
                                 AssetImage('assets/img/icons/icon_star.png'))),
                   ),
                   Text(
-                    '4.8',
+                    (transaction.destination.rating).toString(),
                     style: blackTextStyle.copyWith(fontWeight: medium),
                   )
                 ],
@@ -121,96 +124,120 @@ class CheckoutPage extends StatelessWidget {
           ),
           detailBooking(
               tittle: 'Traveler',
-              subTittle: '2 person',
+              subTittle: '${transaction.totalTraveler} person',
               styleText: blackTextStyle),
           detailBooking(
-              tittle: 'Seat', subTittle: 'A3, B3', styleText: blackTextStyle),
+              tittle: 'Seat',
+              subTittle: transaction.selectedSeat,
+              styleText: blackTextStyle),
           detailBooking(
-              tittle: 'Insurance', subTittle: 'YES', styleText: greenTextStyle),
+              tittle: 'Insurance',
+              subTittle: transaction.insurance ? 'YES' : 'NO',
+              styleText: transaction.insurance ? greenTextStyle : redTextStyle),
           detailBooking(
-              tittle: 'Refundable', subTittle: 'NO', styleText: redTextStyle),
+              tittle: 'Refundable',
+              subTittle: transaction.refundable ? 'YES' : 'NO',
+              styleText:
+                  transaction.refundable ? greenTextStyle : redTextStyle),
           detailBooking(
-              tittle: 'VAT', subTittle: '45%', styleText: blackTextStyle),
+              tittle: 'VAT',
+              subTittle: '${(transaction.vat * 100).toStringAsFixed(0)}%',
+              styleText: blackTextStyle),
           detailBooking(
               tittle: 'Price',
-              subTittle: 'IDR 8.500.690',
+              subTittle: NumberFormat.currency(
+                      decimalDigits: 0, locale: 'ID', symbol: 'IDR ')
+                  .format(transaction.price),
               styleText: blackTextStyle),
           detailBooking(
               tittle: 'Grand Total',
-              subTittle: 'IDR 12.000.000',
+              subTittle: NumberFormat.currency(
+                      decimalDigits: 0, locale: 'ID', symbol: 'IDR ')
+                  .format(transaction.grandTotal),
               styleText: purpleTextStyle),
         ]),
       );
     }
 
     Widget cardPaymentDetail() {
-      return Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 24),
-        margin: EdgeInsets.only(top: 30),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(defaultRadius),
-            color: whiteColor),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // card
-            Container(
-              child: Text('Payment Details',
-                  style: blackTextStyle.copyWith(
-                      fontWeight: semiBold, fontSize: 18)),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(right: 16),
-                  width: 100,
-                  height: 70,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/img/card.png'))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+      return BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          if (state is AuthSuccess) {
+            return Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(vertical: 30, horizontal: 24),
+              margin: EdgeInsets.only(top: 30),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(defaultRadius),
+                  color: whiteColor),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // card
+                  Container(
+                    child: Text('Payment Details',
+                        style: blackTextStyle.copyWith(
+                            fontWeight: semiBold, fontSize: 18)),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Row(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(right: 10),
-                        width: 24,
-                        height: 24,
+                        margin: EdgeInsets.only(right: 16),
+                        width: 100,
+                        height: 70,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/img/logo/logo_airplane.png'))),
+                                image: AssetImage('assets/img/card.png'))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(right: 10),
+                              width: 24,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/img/logo/logo_airplane.png'))),
+                            ),
+                            Text(
+                              'Pay',
+                              style: whiteTextStyle.copyWith(
+                                  fontWeight: medium, fontSize: 16),
+                            )
+                          ],
+                        ),
                       ),
-                      Text(
-                        'Pay',
-                        style: whiteTextStyle.copyWith(
-                            fontWeight: medium, fontSize: 16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            NumberFormat.currency(
+                                    decimalDigits: 0,
+                                    locale: 'ID',
+                                    symbol: 'IDR ')
+                                .format(state.user.balance),
+                            style: blackTextStyle.copyWith(
+                                fontWeight: medium, fontSize: 18),
+                          ),
+                          Text(
+                            'Current Balance',
+                            style: greyTextStyle.copyWith(
+                                fontWeight: light, fontSize: 14),
+                          )
+                        ],
                       )
                     ],
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'IDR 80.400.000',
-                      style: blackTextStyle.copyWith(
-                          fontWeight: medium, fontSize: 18),
-                    ),
-                    Text(
-                      'Current Balance',
-                      style: greyTextStyle.copyWith(
-                          fontWeight: light, fontSize: 14),
-                    )
-                  ],
-                )
-              ],
-            )
-          ],
-        ),
+                  )
+                ],
+              ),
+            );
+          }
+          return SizedBox();
+        },
       );
     }
 
