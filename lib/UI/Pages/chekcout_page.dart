@@ -1,6 +1,7 @@
 import 'package:airplane/Models/transaction_model.dart';
 import 'package:airplane/UI/Widgets/customButton.dart';
 import 'package:airplane/cubit/auth_cubit.dart';
+import 'package:airplane/cubit/transaction_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:airplane/Shared/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -301,16 +302,37 @@ class CheckoutPage extends StatelessWidget {
           // Card Payment Detail
           cardPaymentDetail(),
           // Button
-          CustomButton(
-              textButton: Text(
-                'Pay Now',
-                style:
-                    whiteTextStyle.copyWith(fontWeight: medium, fontSize: 18),
-              ),
-              actionButton: () {
-                Navigator.pushNamed(context, '/success-page');
-              },
-              margin: EdgeInsets.only(top: 30)),
+          BlocConsumer<TransactionCubit, TransactionState>(
+            listener: (context, state) {
+              if (state is TransactionSuccess) {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/success-page', (route) => false);
+              } else if (state is TransactionFailed) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(state.error),
+                  backgroundColor: redColor,
+                ));
+              }
+            },
+            builder: (context, state) {
+              if (state is TransactionLoading) {
+                return CircularProgressIndicator();
+              }
+
+              return CustomButton(
+                  textButton: Text(
+                    'Pay Now',
+                    style: whiteTextStyle.copyWith(
+                        fontWeight: medium, fontSize: 18),
+                  ),
+                  actionButton: () {
+                    context
+                        .read<TransactionCubit>()
+                        .createTransaction(transaction);
+                  },
+                  margin: EdgeInsets.only(top: 30));
+            },
+          ),
           SizedBox(
             height: 30,
           ),
