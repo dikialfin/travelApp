@@ -48,7 +48,7 @@ class SuccessBookingPage extends StatelessWidget {
                     whiteTextStyle.copyWith(fontWeight: medium, fontSize: 18),
               ),
               actionButton: () {
-                context.read<PageCubit>().setPage(1);
+                context.read<PageCubit>().setPage(0);
                 Navigator.pushNamedAndRemoveUntil(
                     context, '/home-page', (route) => false);
               },
